@@ -42,9 +42,9 @@ public interface IUserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     default ResponseEntity<ResultDto<List<OutUserDto>>> getUsers(
-            @RequestParam(required = false, name = "page", defaultValue = "0") int page,
-            @RequestParam(required = false, name = "size", defaultValue = "20") int size,
-            @RequestParam(required = false, name = "sort", defaultValue = "DESC") String sort,
+            @RequestParam(required = false, name = "page") Integer page,
+            @RequestParam(required = false, name = "size") Integer size,
+            @RequestParam(required = false, name = "sort") String sort,
             @RequestParam(required = false, name = "name") String name,
             @RequestParam(required = false, name = "email") String email,
             @RequestParam(required = false, name = "age") Integer age

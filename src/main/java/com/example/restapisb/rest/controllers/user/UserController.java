@@ -24,15 +24,21 @@ public class UserController implements IUserController {
 
 
     public ResponseEntity<ResultDto<List<OutUserDto>>> getUsers(
-            final int page,
-            final int size,
+            final Integer page,
+            final Integer size,
             final String sort,
             final String name,
             final String email,
             final Integer age
     ) {
 
-        var users = userService.getUsers(page, size);
+        List<OutUserDto> users;
+        if (page == null || size == null) {
+            users = userService.getUsers();
+        } else {
+            users = userService.getUsers(page, size);
+        }
+
 
         if (name != null && !name.isBlank()) {
             users = users.stream().filter(
