@@ -41,7 +41,7 @@ public interface IUserController {
     })
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    default ResponseEntity<ResultDto<List<OutUserDto>>> getUsers(
+    ResponseEntity<ResultDto<List<OutUserDto>>> getUsers(
             @RequestParam(required = false, name = "page") Integer page,
             @RequestParam(required = false, name = "size") Integer size,
             @RequestParam(required = false, name = "sort") String sort,
@@ -49,9 +49,7 @@ public interface IUserController {
             @RequestParam(required = false, name = "email") String email,
             @RequestParam(required = false, name = "age") Integer age
 
-    ) {
-        return ResponseEntity.badRequest().build();
-    }
+    );
 
     @Operation(summary = "Get user By ID")
     @ApiResponses(value = {
@@ -71,10 +69,7 @@ public interface IUserController {
     })
     @GetMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    default ResponseEntity<ResultDto<OutUserDto>> getUser(@PathVariable(value = userID) final String id) {
-        return ResponseEntity.badRequest().build();
-
-    }
+    ResponseEntity<ResultDto<OutUserDto>> getUser(@PathVariable(value = userID) final String id);
 
     @Operation(summary = "Update user")
     @ApiResponses(value = {
@@ -94,10 +89,7 @@ public interface IUserController {
     })
     @PutMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    default ResponseEntity<ResultDto<OutUserDto>> updateUser(@PathVariable(value = userID) final String id, @Valid @RequestBody final InUserDto userIn) {
-        return ResponseEntity.badRequest().build();
-
-    }
+    ResponseEntity<ResultDto<OutUserDto>> updateUser(@PathVariable(value = userID) final String id, @Valid @RequestBody final InUserDto userIn);
 
     @Operation(summary = "Create user")
     @ApiResponses(value = {
@@ -117,10 +109,7 @@ public interface IUserController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    default ResponseEntity<ResultDto<OutUserDto>> insertUser(@RequestBody @Valid final InUserDto userIn) {
-        return ResponseEntity.badRequest().build();
-
-    }
+    ResponseEntity<ResultDto<OutUserDto>> insertUser(@RequestBody @Valid final InUserDto userIn);
 
     @Operation(summary = "Delete user")
     @ApiResponses(value = {
@@ -139,11 +128,8 @@ public interface IUserController {
             })
     })
     @DeleteMapping("/{userId}")
-    @ResponseStatus(HttpStatus.OK)
-    default ResponseEntity<ResultDto<OutUserDto>> deleteUser(@PathVariable(value = userID) final String id) {
-        return ResponseEntity.badRequest().build();
-
-    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleteUser(@PathVariable(value = userID) final String id);
 
 
 }

@@ -66,6 +66,7 @@ public class UserController implements IUserController {
                         null
                 )
         );
+
     }
 
 
@@ -114,9 +115,8 @@ public class UserController implements IUserController {
     }
 
 
-    public ResponseEntity<ResultDto<OutUserDto>> deleteUser(final String id) {
+    public void deleteUser(final String id) {
         userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
     }
 
 }
