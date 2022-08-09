@@ -1,6 +1,7 @@
 package com.example.restapisb.rest.controllers.user;
 
 import com.example.restapisb.rest.dto.InUserDto;
+import com.example.restapisb.rest.dto.LinksDto;
 import com.example.restapisb.rest.dto.OutUserDto;
 import com.example.restapisb.rest.dto.ResultDto;
 import com.example.restapisb.rest.services.interfaces.IUserService;
@@ -59,10 +60,30 @@ public class UserController implements IUserController {
         }
 
 
+        final StringBuilder selfSb = new StringBuilder()
+                .append("/api/users")
+                .append("?page=").append(page)
+                .append("&size=").append(size)
+                .append("&sort=").append(sort)
+                .append("&name=").append(name)
+                .append("&email=").append(email)
+                .append("&age=").append(age);
+
+
+        var links = new LinksDto(
+                selfSb.toString(),
+                List.of("/api/users/{id}"),
+                "/api/users/",
+                selfSb.toString(),
+                selfSb.toString(),
+                selfSb.toString()
+        );
+
+
         return ResponseEntity.ok(
                 new ResultDto<>(
                         users,
-                        null,
+                        links,
                         null
                 )
         );
